@@ -1,4 +1,3 @@
-import 'package:catalog_app/pallets/palates.dart';
 import 'package:flutter/material.dart';
 
 class myDrawer extends StatelessWidget {
@@ -6,7 +5,7 @@ class myDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const currentimage =
+    const String currentimage =
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV_sFpDpeeVEbz6FWYWXIh3ziuYLP8WsC1rw&usqp=CAU";
 
     return Drawer(

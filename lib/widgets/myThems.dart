@@ -15,6 +15,9 @@ class myAllThems {
             color: Colors.black87,
             fontSize: 30.0,
             fontWeight: FontWeight.bold)),
-    fontFamily: GoogleFonts.roboto().fontFamily,
+    fontFamily: GoogleFonts.poppins().fontFamily,
   );
+
+  static const backColor = Color.fromARGB(255, 239, 239, 239);
+  static const backWhiteColor = Color.fromARGB(255, 255, 255, 255);
 }

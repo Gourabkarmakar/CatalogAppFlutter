@@ -1,10 +1,14 @@
 import 'dart:convert';
 
 import 'package:catalog_app/models/products.dart';
-import 'package:catalog_app/widgets/item_widget.dart';
-import 'package:catalog_app/widgets/myDrawer.dart';
+import 'package:catalog_app/utils/myroutes.dart';
+import 'package:catalog_app/widgets/hadder_widget.dart';
+import 'package:catalog_app/widgets/home_widgets/catalog_list_widget.dart';
+import 'package:catalog_app/widgets/myThems.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,7 +25,7 @@ class _HomeState extends State<Home> {
   }
 
   loadData() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 3));
     final listItems = await rootBundle.loadString("assets/files/products.json");
     final decode = jsonDecode(listItems);
     var finalData = decode["products"];
@@ -33,22 +37,31 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Galary"),
-        ),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: (Products.items.isEmpty)
-              ? const Center(
+      // backgroundColor: myAllThems.backColor,
+      backgroundColor: myAllThems.backWhiteColor,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.blueAccent,
+        onPressed: () => Navigator.pushNamed(context, MyAppRoutes.cart),
+        child: const Icon(CupertinoIcons.cart),
+      ),
+      body: SafeArea(
+        child: Container(
+          padding: Vx.m12,
+          // color: Colors.amber,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Harder(),
+              if (Products.items.isEmpty)
+                const Center(
                   child: CircularProgressIndicator(),
-                )
-              : ListView.builder(
-                  itemCount: Products.items.length,
-                  itemBuilder: (context, index) {
-                    return ItemWidget(item: Products.items[index]);
-                  },
-                ),
+                ).expand()
+              else
+                const CatalogList().expand(),
+            ],
+          ),
         ),
-        drawer: const myDrawer());
+      ),
+    );
   }
 }
