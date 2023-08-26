@@ -27,5 +27,16 @@ class Item {
 }
 
 class Products {
+  // Create singleTone object
+  // static final product = Products._internal();
+  // Products._internal();
+  // factory Products() => product;
+
   static List<Item> items = [];
+
+  // get Item By id
+  Item getbyId(int id) =>
+      items.firstWhere((item) => item.id == id, orElse: null);
+
+  Item getByPosition(int pos) => items[pos];
 }
