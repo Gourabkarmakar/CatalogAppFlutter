@@ -18,7 +18,6 @@ class Cart {
 
   // Set new catalog
   set catalog(Products new_catalog) {
-    assert(new_catalog != null);
     _catalog = new_catalog;
   }
 

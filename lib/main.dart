@@ -5,7 +5,6 @@ import 'package:catalog_app/pages/login_page.dart';
 import 'package:catalog_app/utils/myroutes.dart';
 import 'package:catalog_app/widgets/myThems.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 void main() {
