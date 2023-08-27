@@ -1,7 +1,5 @@
-import 'dart:io';
 import 'package:catalog_app/core/store.dart';
 import 'package:catalog_app/models/cartModel.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
@@ -74,13 +72,19 @@ class CartTail extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            "₹ ${cartItems.totalPrice}"
-                .text
-                .xl2
-                .textStyle(context.captionStyle)
-                .bold
-                .make()
-                .p4(),
+            VxConsumer(
+              notifications: const {},
+              mutations: const {RemoveMutation},
+              builder: (BuildContext context, store, VxStatus? status) {
+                return "₹ ${cartItems.totalPrice}"
+                    .text
+                    .xl2
+                    .textStyle(context.captionStyle)
+                    .bold
+                    .make()
+                    .p4();
+              },
+            ),
             ElevatedButton(
               onPressed: () {
                 ScaffoldMessenger.of(context).showSnackBar(
